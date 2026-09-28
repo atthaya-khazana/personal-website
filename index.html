@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<meta name="description" content="Your Name — Computer Science student and developer. Projects, skills, and background.">
+
+<!-- ============================================================
+  HOW TO CUSTOMIZE THIS SITE — see README.md for the full list.
+  Replace "Your Name", every [bracketed placeholder], and the CV
+  file in /cv before you deploy.
+============================================================= -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ TAB NAVIGATION ============ -->
+<header class="tabbar" id="tabbar">
+  <a class="tabbar__brand" href="#home">Your Name<span>.</span></a>
+  <nav class="tabbar__tabs">
+    <a href="#home" class="tab tab--butter">Home</a>
+    <a href="#about" class="tab tab--blush">About me</a>
+    <a href="#skills" class="tab tab--sage">Skills</a>
+    <a href="#projects" class="tab tab--choco">Portfolio</a>
+    <a href="#record" class="tab tab--butter">Education</a>
+    <a href="#contact" class="tab tab--blush">Contact</a>
+  </nav>
+  <a class="tabbar__cv" href="cv/YourName_CV.pdf" download>Download CV</a>
+</header>
+
+<main id="main">
+
+  <!-- ============ HOME ============ -->
+  <section class="block block--cream" id="home">
+    <div class="block__inner hero">
+      <p class="eyebrow">01 — Home</p>
+      <h1 class="hero__title">
+        Building software<br>
+        that feels <em>effortless</em>.
+      </h1>
+      <p class="hero__lede">
+        I'm Your Name, a Computer Science student who likes
+        <strong>Software Engineering</strong>, <strong>Cloud Computing</strong>
+        and <strong>Artificial Intelligence</strong> in roughly that order.
+        Currently looking for a Software Engineer Intern role where I can
+        work on real systems, not just toy problems.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--choco" href="#projects">View my work</a>
+        <a class="btn btn--outline" href="cv/YourName_CV.pdf" download>Download CV</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="block block--butter" id="about">
+    <div class="block__inner split">
+      <div class="split__text">
+        <p class="eyebrow eyebrow--dark">02 — About</p>
+        <h2 class="display-lg">About <em>me</em></h2>
+        <p>
+          I started writing code by taking apart small automation scripts
+          for chores I didn't want to do by hand — that curiosity turned
+          into a Computer Science degree and a habit of finishing side
+          projects I probably should have scoped down.
+        </p>
+        <p>
+          Right now I split my time between coursework in distributed
+          systems and machine learning, and shipping small full&#8209;stack
+          projects end to end — schema, API, interface, deploy. I care
+          about software that fails loudly in development and
+          <strong>quietly in production.</strong>
+        </p>
+        <div class="stats">
+          <div><strong>3+</strong><span>years learning to code</span></div>
+          <div><strong>10+</strong><span>projects shipped</span></div>
+          <div><strong>2</strong><span>internship-ready hands</span></div>
+        </div>
+      </div>
+      <div class="split__visual">
+        <div class="polaroid polaroid--tape">
+          <div class="polaroid__frame photo-placeholder">
+            <svg viewBox="0 0 64 64" fill="none"><circle cx="32" cy="24" r="12" stroke="currentColor" stroke-width="2.5"/><path d="M12 54c3-12 12-18 20-18s17 6 20 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </div>
+          <p class="polaroid__caption">it's&nbsp;me, probably debugging</p>
+        </div>
+        <div class="note-card">comfortable,<br>curious, and<br><em>always shipping</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="block block--cream" id="skills">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--dark">03 — Skills</p>
+      <h2 class="display-lg">What I work with</h2>
+
+      <div class="skills__row">
+        <div class="skills__group">
+          <h3>Languages</h3>
+          <ul class="tags">
+            <li>Python</li><li>JavaScript</li><li>Java</li><li>SQL</li>
+          </ul>
+        </div>
+        <div class="skills__group">
+          <h3>Web &amp; backend</h3>
+          <ul class="tags">
+            <li>React</li><li>Next.js</li><li>Node.js</li><li>Express</li><li>REST APIs</li>
+          </ul>
+        </div>
+        <div class="skills__group">
+          <h3>Tools &amp; infra</h3>
+          <ul class="tags">
+            <li>Git</li><li>GitHub</li><li>Docker</li><li>Linux</li><li>PostgreSQL</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="block block--choco" id="projects">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--light">04 — Portfolio</p>
+      <h2 class="display-lg display-lg--light">My <em>portfolio</em></h2>
+    </div>
+
+    <article class="project-row">
+      <div class="project-row__visual">
+        <div class="polaroid">
+          <div class="polaroid__frame photo-placeholder photo-placeholder--butter">
+            <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="16" width="44" height="32" rx="3" stroke="currentColor" stroke-width="2.5"/><path d="M10 40l12-10 9 7 11-13 12 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-row__body">
+        <p class="tag-line">Package <span>Full&#8209;stack app</span></p>
+        <h3>Student Task Management System</h3>
+        <p><strong>The problem —</strong> classmates were tracking assignment deadlines across five different group chats and missing them anyway.</p>
+        <p><strong>The build —</strong> a shared task board with per-course deadlines, reminder emails, and a workload view so people could see what was actually due that week. I built the REST API, the database schema, and the reminder email job.</p>
+        <ul class="tags tags--outline">
+          <li>React</li><li>Express</li><li>PostgreSQL</li>
+        </ul>
+        <div class="project-row__links">
+          <a href="https://github.com/yourusername/project-repo" target="_blank" rel="noopener">GitHub &#8594;</a>
+          <a href="https://your-demo-url.vercel.app" target="_blank" rel="noopener">Live demo &#8594;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-row project-row--reverse">
+      <div class="project-row__visual">
+        <div class="polaroid polaroid--tape">
+          <div class="polaroid__frame photo-placeholder photo-placeholder--blush">
+            <svg viewBox="0 0 64 64" fill="none"><path d="M32 10l6 13 14 2-10 10 2 14-12-7-12 7 2-14-10-10 14-2 6-13z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="project-row__body">
+        <p class="tag-line">Package <span>[Project type]</span></p>
+        <h3>[Second Project Name]</h3>
+        <p><strong>The problem —</strong> [what problem does this project solve, in one or two sentences].</p>
+        <p><strong>The build —</strong> [what you built, how it works, and your specific contribution].</p>
+        <ul class="tags tags--outline">
+          <li>Tech</li><li>Stack</li><li>Here</li>
+        </ul>
+        <div class="project-row__links">
+          <a href="https://github.com/yourusername/project-repo-2" target="_blank" rel="noopener">GitHub &#8594;</a>
+          <a href="https://your-second-demo.vercel.app" target="_blank" rel="noopener">Live demo &#8594;</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ EDUCATION / EXPERIENCE ============ -->
+  <section class="block block--butter" id="record">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--dark">05 — Education &amp; experience</p>
+      <h2 class="display-lg">A quick timeline</h2>
+
+      <ol class="timeline">
+        <li>
+          <p class="timeline__date">2023 — Present</p>
+          <h3>B.Sc. Computer Science</h3>
+          <p>Your University Name &middot; GPA [x.xx]/4.00</p>
+        </li>
+        <li>
+          <p class="timeline__date">[Month Year] — [Month Year]</p>
+          <h3>Software Engineer Intern</h3>
+          <p>[Company name] &middot; Built/maintained [what you worked on], using [tech stack].</p>
+        </li>
+        <li>
+          <p class="timeline__date">[Month Year]</p>
+          <h3>[Competition / Organization / Certification]</h3>
+          <p>[One line on what it was and what you did or achieved.]</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="block block--choco" id="contact">
+    <div class="block__inner contact">
+      <p class="eyebrow eyebrow--light">06 — Contact</p>
+      <h2 class="display-lg display-lg--light">Let's talk</h2>
+      <p class="contact__lede">
+        Looking for an intern, a collaborator, or just want to see the
+        code behind one of these projects? My inbox is open.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn--butter" href="mailto:your.email@example.com">Email me</a>
+        <a class="btn btn--outline-light" href="cv/YourName_CV.pdf" download>Download CV</a>
+      </div>
+      <div class="social-row">
+        <a href="https://github.com/yourusername" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:your.email@example.com">Email</a>
+      </div>
+    </div>
+    <footer class="footer">
+      <span>&copy; <span id="year"></span> Your Name.</span>
+      <span>Built with HTML, CSS &amp; JS — deployed on Vercel.</span>
+    </footer>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
