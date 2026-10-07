@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atthaya Khazana — Portfolio</title>
+<meta name="description" content="Atthaya Khazana — Computer Science student and developer. Projects, skills, and background.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --butter:#F7ECC0; --butter-soft:#FBF3D6; --butter-deep:#EEDA80;
+  --choco:#3B2117; --choco-soft:#4E2E20;
+  --cream:#FBF6E7; --blush:#E9C9B4; --sage:#B9B487; --ink:#2C1B12;
+  --espresso:#1F140D; --espresso-line:rgba(247,236,192,0.12);
+  --font-display:'Fraunces', Georgia, serif;
+  --font-body:'Jost', -apple-system, Segoe UI, sans-serif;
+  --content-max:46rem;
+  --sidebar-w:16rem;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:5.5rem; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+}
+
+body{
+  margin:0; background:var(--cream); color:var(--ink);
+  font-family:var(--font-body); font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{ font-family:var(--font-display); margin:0; line-height:1.08; font-weight:500; }
+em{ font-style:italic; font-weight:500; }
+p{ margin:0 0 1.1rem; }
+p:last-child{ margin-bottom:0; }
+strong{ font-weight:600; }
+
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
+.skip-link{
+  position:absolute; left:-999px; top:0; background:var(--choco); color:var(--cream);
+  padding:0.75rem 1rem; z-index:200;
+}
+.skip-link:focus{ left:0.5rem; top:0.5rem; }
+:focus-visible{ outline:2px solid var(--choco); outline-offset:3px; }
+
+/* ---- Sidebar ---- */
+.sidebar{
+  position:fixed; top:0; left:0; bottom:0; width:var(--sidebar-w);
+  background:var(--espresso); border-right:1px solid var(--espresso-line);
+  display:flex; flex-direction:column; padding:2.25rem 1.75rem; z-index:100;
+}
+.sidebar__top{ margin-bottom:3rem; }
+.sidebar__toggle{ display:none; }
+.sidebar__nav{ display:flex; flex-direction:column; flex:1; }
+.navlink{
+  display:flex; align-items:baseline; text-decoration:none; color:var(--cream);
+  opacity:0.6; font-size:0.98rem; font-weight:500; padding:0.65rem 0;
+  border-left:2px solid transparent; padding-left:0.9rem; margin-left:-0.9rem;
+  transition:opacity 0.15s ease, border-color 0.15s ease;
+}
+.navlink:hover, .navlink:focus-visible{ opacity:0.85; }
+.navlink.is-active{ opacity:1; border-left-color:var(--butter-deep); }
+
+/* ---- Views: satu bagian tampil per waktu ---- */
+main{ margin-left:var(--sidebar-w); height:100vh; overflow:hidden; }
+.view{
+  display:none; height:100vh; overflow-y:auto; padding:5.5rem 2rem;
+  scroll-behavior:smooth; animation:rise 0.5s ease both;
+}
+.view.is-active{ display:block; }
+@keyframes rise{
+  from{ opacity:0; transform:translateY(14px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+.block--cream{ background:var(--cream); }
+.block--butter{ background:var(--butter); }
+.block--choco{ background:var(--choco); color:var(--cream); }
+.block__inner{ max-width:var(--content-max); margin:0 auto; }
+
+.eyebrow{
+  font-family:var(--font-body); font-size:0.8rem; letter-spacing:0.02em;
+  color:var(--choco-soft); opacity:0.75; margin:0 0 1rem;
+}
+.eyebrow--dark{ color:var(--choco-soft); opacity:0.75; }
+.eyebrow--light{ color:var(--cream); opacity:0.75; }
+
+.display-lg{ font-size:clamp(2rem, 4.2vw, 2.9rem); margin-bottom:1.5rem; color:var(--choco); }
+.display-lg--light{ color:var(--cream); }
+
+/* ---- Hero ---- */
+#home{ --content-max:64rem; }
+.hero{ display:grid; grid-template-columns:15rem 1fr; gap:2.25rem; align-items:center; padding:2.5rem 0 1rem; }
+.polaroid.hero__photo{ order:-1; transform:none; justify-self:start; }
+.hero__title{ font-size:clamp(2.4rem, 5vw, 3.6rem); color:var(--choco); margin-bottom:0.3rem; }
+.hero__subtitle{
+  font-family:var(--font-body); font-size:1.2rem; font-weight:500;
+  color:var(--choco-soft); line-height:1.3; margin:0 0 1.5rem;
+}
+.hero__lede{ max-width:52ch; font-size:1.1rem; }
+.hero__actions{ display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+
+.btn{
+  display:inline-block; text-decoration:none; padding:0.85rem 1.6rem;
+  border-radius:999px; font-weight:500; font-size:0.95rem; border:1.5px solid transparent;
+  transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn--choco{ background:var(--choco); color:var(--cream); }
+.btn--choco:hover{ background:var(--choco-soft); }
+.btn--outline{ background:transparent; color:var(--choco); border-color:var(--choco); }
+.btn--outline:hover{ background:var(--choco); color:var(--cream); }
+.btn--butter{ background:var(--butter-deep); color:var(--choco); }
+.btn--butter:hover{ background:var(--butter); }
+.btn--outline-light{ background:transparent; color:var(--cream); border-color:var(--cream); }
+.btn--outline-light:hover{ background:var(--cream); color:var(--choco); }
+
+/* ---- About ---- */
+/* Kotak persegi panjang, menumpuk ke bawah di sebelah kanan foto */
+.about-cards{ display:grid; grid-template-columns:1fr; gap:1.2rem; }
+
+/* Kotak yang dipakai di About dan Experience */
+.card{
+  background:var(--cream); border:1px solid rgba(59,33,23,0.18);
+  border-radius:14px; padding:1.4rem 1.4rem 1.5rem;
+}
+.card h3{ font-family:var(--font-body); font-size:1.05rem; font-weight:600; color:var(--choco); margin-bottom:0.7rem; }
+.card__text{ margin:0; font-size:0.96rem; }
+/* About: warna dibalik. Latar cokelat, teks krem, kotak cokelat bergaris krem, judul kuning, tag outline seperti di Portfolio */
+#about .display-lg--light{ color:var(--butter-deep); }
+#about .card{ background:var(--choco); border:1.5px solid var(--cream); color:var(--cream); padding:1.6rem 1.8rem; }
+#about .card h3{ color:var(--butter-deep); }
+#about .tags li{ background:transparent; border:1px solid rgba(251,246,231,0.4); color:var(--cream); }
+
+
+.polaroid{
+  background:var(--cream); padding:0.9rem 0.9rem 1.6rem; border-radius:4px;
+  box-shadow:0 14px 30px -14px rgba(43,27,18,0.35);
+  transform:rotate(-3deg); max-width:15rem; position:relative;
+}
+.polaroid--tape::before{
+  content:''; position:absolute; top:-0.7rem; left:50%; width:3.2rem; height:1.3rem;
+  background:rgba(233,201,180,0.85); transform:translateX(-50%) rotate(-4deg); border-radius:1px;
+}
+.polaroid__frame{ width:100%; aspect-ratio:4/5; border-radius:2px; overflow:hidden; background:#ddd; }
+.polaroid__frame img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+/* ---- Skills ---- */
+.skills__row{ display:grid; grid-template-columns:2fr 1fr; gap:2rem; margin-top:1rem; }
+.skills__group h3{
+  font-family:var(--font-body); font-size:0.95rem; font-weight:600;
+  color:var(--choco-soft); margin-bottom:0.8rem;
+}
+.tags{ list-style:none; display:flex; flex-wrap:wrap; gap:0.5rem; margin:0; padding:0; }
+.tags li{
+  background:var(--butter); border:1px solid var(--butter-deep);
+  padding:0.4rem 0.85rem; border-radius:999px; font-size:0.85rem; color:var(--choco);
+}
+.tags--outline li{ background:transparent; border:1px solid rgba(251,246,231,0.4); color:var(--cream); }
+
+/* ---- Projects ---- */
+#projects{ --content-max:64rem; }
+.project-row{
+  max-width:var(--content-max); margin:0 auto 4.5rem; display:grid;
+  grid-template-columns:1fr 1fr; gap:3rem; align-items:center;
+}
+.project-row:last-child{ margin-bottom:0; }
+.project-row--reverse{ direction:rtl; }
+.project-row--reverse > *{ direction:ltr; }
+.project-row .polaroid{ margin:0 auto; }
+
+.tag-line{ font-size:0.85rem; color:var(--butter-deep); margin-bottom:0.6rem; }
+.tag-line span{ color:var(--cream); font-weight:600; }
+.project-row__body h3{ font-size:1.5rem; color:var(--cream); margin-bottom:0.9rem; }
+.project-row__body p{ max-width:50ch; }
+.project-row__body p strong{ color:var(--butter-deep); }
+.project-row__body .tags{ margin:1rem 0 1.1rem; }
+.project-row__links{ display:flex; gap:1.5rem; }
+.project-row__links a{ color:var(--butter-deep); text-decoration:none; font-weight:500; font-size:0.92rem; }
+.project-row__links a:hover{ color:var(--cream); }
+
+/* Foto project: 2 kolom, frame landscape untuk screenshot web */
+.photo-collage{
+  --photo-ratio:16/10;
+  --frame:#EEDA80;
+  --tilt:0deg;
+  display:grid; grid-template-columns:repeat(2, 1fr);
+  gap:1.4rem 1.2rem; max-width:30rem; margin:0 auto;
+}
+.project-row .photo-collage .polaroid{ max-width:none; margin:0; padding:0.3rem; background:var(--frame); }
+/* Tinggi frame mengikuti rasio foto aslinya, jadi foto tidak terpotong */
+.photo-collage .polaroid__frame{ aspect-ratio:auto; outline:1px solid rgba(59,33,23,0.3); }
+.photo-collage .polaroid__frame img{ height:auto; }
+.photo-collage .polaroid:nth-child(odd){ transform:rotate(calc(var(--tilt) * -1)); }
+.photo-collage .polaroid:nth-child(even){ transform:rotate(var(--tilt)); }
+.photo-collage .polaroid--tape::before{ background:rgba(251,246,231,0.85); }
+.photo-collage--wide{ --photo-ratio:1770/397; grid-template-columns:1fr; }
+.photo-collage--phone{ --photo-ratio:9/19.5; grid-template-columns:repeat(3, 1fr); gap:1rem; }
+
+/* ---- Experience & Background: tab navigation ---- */
+.tabs{ position:relative; display:flex; flex-wrap:wrap; gap:0.6rem; margin:0.5rem 0 1.5rem; }
+.tab{
+  flex:1 1 auto; text-align:center;
+  font:inherit; font-size:0.92rem; font-weight:500; cursor:pointer;
+  padding:0.55rem 1.2rem; border-radius:999px; border:1.5px solid var(--choco);
+  background:transparent; color:var(--choco);
+  transition:background 0.15s ease, color 0.3s ease;
+}
+.tab:hover{ background:rgba(59,33,23,0.1); }
+.tab[aria-selected="true"]{ background:var(--choco); color:var(--cream); }
+/* Latar tab aktif: kapsul yang bergeser ke tab yang dipilih */
+.tabs__pill{
+  position:absolute; top:0; left:0; z-index:0; border-radius:999px; background:var(--choco);
+  pointer-events:none;
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1), height 0.35s ease;
+}
+.tabs.has-pill .tab{ position:relative; z-index:1; }
+.tabs.has-pill .tab[aria-selected="true"]{ background:transparent; color:var(--cream); }
+/* Isi tab muncul naik pelan-pelan setiap kali tab dibuka */
+[role="tabpanel"]:not([hidden]) > .card{ animation:rise 0.45s ease backwards; }
+[role="tabpanel"]:not([hidden]) > .card + .card{ animation-delay:0.12s; }
+#record{ --content-max:64rem; }
+.card--entry{ background:var(--choco); color:var(--cream); border:none; padding:2rem; }
+[role="tabpanel"] > .card + .card{ margin-top:1rem; }
+.entry__body p{ max-width:50ch; }
+.entry__body p strong{ color:var(--butter-deep); }
+.card--entry .entry__body h3{
+  font-family:var(--font-display); font-size:1.5rem; font-weight:500;
+  line-height:1.08; color:var(--cream); margin:0 0 0.9rem;
+}
+/* Layout dengan foto di samping (Volunteer & Certifications) */
+.entry--split{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; }
+.entry__visual .gallery{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.4rem 1rem; margin:0; }
+.entry__visual .entry__photo--single{ max-width:18rem; margin:0 auto; padding-bottom:1.1rem; }
+
+/* Education & Research: teks penuh sampai ujung kartu */
+.entry:not(.entry--split) .entry__body p,
+.entry--cert .entry__body p{ max-width:none; }
+
+/* Certifications: kolom foto seukuran gambar, jarak ke teks rapat */
+.entry--cert{ grid-template-columns:minmax(0,19rem) 1fr; gap:2rem; }
+.entry--cert .entry__visual .entry__photo--single{ max-width:none; margin:0; }
+
+/* Polaroid di Volunteer & Certifications: butter, sama seperti frame di Portfolio */
+.entry__photo{
+  position:relative; margin:0; padding:0.5rem 0.5rem 0.9rem; background:var(--butter-deep);
+  border-radius:4px;
+  box-shadow:0 14px 30px -14px rgba(43,27,18,0.35);
+}
+.entry__photo::before{
+  content:''; position:absolute; top:-0.6rem; left:50%; width:2.8rem; height:1.1rem;
+  background:rgba(251,246,231,0.85);
+  transform:translateX(-50%) rotate(-4deg); border-radius:1px;
+}
+.entry__photo-frame{
+  aspect-ratio:4/3; overflow:hidden; border-radius:2px;
+  outline:1px solid rgba(59,33,23,0.3); background:var(--cream);
+}
+.entry__photo-frame img{ display:block; width:100%; height:100%; object-fit:cover; }
+.entry__photo--contain .entry__photo-frame img{ object-fit:contain; }
+.entry__photo--single .entry__photo-frame{ aspect-ratio:1576/1216; }
+/* Foto jatuh satu per satu, dan naik sedikit saat di-hover */
+@keyframes photo-in{
+  from{ opacity:0; transform:translateY(16px) scale(0.95); }
+  to{ opacity:1; transform:translateY(0) scale(1); }
+}
+.entry__photo{
+  animation:photo-in 0.5s cubic-bezier(0.2,0.7,0.3,1) 0.15s backwards;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+.gallery .entry__photo:nth-child(2){ animation-delay:0.23s; }
+.gallery .entry__photo:nth-child(3){ animation-delay:0.31s; }
+.gallery .entry__photo:nth-child(4){ animation-delay:0.39s; }
+.entry__photo:hover{ transform:translateY(-4px); box-shadow:0 18px 30px -14px rgba(43,27,18,0.45); } /* lebar/tinggi sertifikat; ganti angkanya kalau ukuran fotonya beda */
+
+/* ---- Contact ---- */
+.contact__lede{ max-width:48ch; }
+.contact-links{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2rem; }
+
+/* ---- Responsive: sidebar jadi top bar dengan menu ---- */
+@media (max-width: 900px){
+  :root{ --sidebar-w:0px; }
+  .sidebar{
+    position:sticky; top:0; left:auto; bottom:auto; width:100%; height:auto;
+    flex-direction:column; padding:0; border-right:none; border-bottom:1px solid var(--espresso-line);
+  }
+  .sidebar__top{
+    margin:0; padding:0.9rem 1.25rem; display:flex; align-items:center;
+    justify-content:space-between; flex-direction:row-reverse;
+  }
+  .sidebar__toggle{
+    display:flex; flex-direction:column; gap:4px; width:22px;
+    background:none; border:none; cursor:pointer; padding:0.4rem;
+  }
+  .sidebar__toggle span{ display:block; height:2px; width:100%; background:var(--cream); }
+  .sidebar__nav{
+    flex-direction:column; gap:0; max-height:0; overflow:hidden;
+    padding:0 1.25rem; transition:max-height 0.25s ease;
+  }
+  .sidebar__nav.is-open{ max-height:20rem; padding-bottom:0.5rem; }
+  .navlink{ margin-left:0; }
+  main{ height:calc(100vh - 3.4rem); }
+  .view{ height:calc(100vh - 3.4rem); padding:3rem 1.4rem; }
+  .project-row, .project-row--reverse{ grid-template-columns:1fr; direction:ltr; }
+  .gallery{ grid-template-columns:repeat(2,1fr); }
+  .about-cards{ grid-template-columns:1fr; }
+  .hero{ grid-template-columns:1fr; gap:2.5rem; }
+  .polaroid.hero__photo{ order:0; justify-self:center; }
+  .entry--split{ grid-template-columns:1fr; gap:2rem; }
+  .entry--cert .entry__visual .entry__photo--single{ max-width:18rem; margin:0 auto; }
+  .skills__row{ grid-template-columns:1fr; gap:1.8rem; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ SIDEBAR NAVIGATION ============ -->
+<aside class="sidebar">
+  <div class="sidebar__top">
+    <button class="sidebar__toggle" id="navToggle" aria-expanded="false" aria-controls="sidebarNav">
+      <span></span><span></span><span></span>
+      <span class="sr-only">Open menu</span>
+    </button>
+  </div>
+
+  <nav class="sidebar__nav" id="sidebarNav">
+    <a href="#home" class="navlink" data-view-link>Home</a>
+    <a href="#about" class="navlink" data-view-link>About Me</a>
+    <a href="#skills" class="navlink" data-view-link>Skills</a>
+    <a href="#projects" class="navlink" data-view-link>Portfolio</a>
+    <a href="#record" class="navlink" data-view-link>Education &amp; Experience</a>
+    <a href="#contact" class="navlink" data-view-link>Contact</a>
+  </nav>
+</aside>
+
+<main id="main">
+
+  <!-- ============ HOME ============ -->
+  <section class="block block--butter view" id="home">
+    <div class="block__inner hero">
+      <div class="hero__text">
+        <p class="eyebrow">Home — Introduction</p>
+        <h1 class="hero__title">Atthaya Khazana</h1>
+        <h2 class="hero__subtitle">Computer Science Student</h2>
+        <p class="hero__lede">
+          Interested in software development, technology, and problem solving.
+          Currently seeking an internship opportunity to apply my technical skills,
+          gain hands-on experience, and contribute to real-world technology projects.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--choco" href="cv/Atthaya_Khazana_CV.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <div class="polaroid polaroid--tape hero__photo">
+        <div class="polaroid__frame">
+          <img src="images/profile.jpg" alt="Photo of Atthaya Khazana">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="block block--choco view" id="about">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--light">About Me — Profile</p>
+      <h2 class="display-lg display-lg--light">About <em>Me</em></h2>
+
+      <div class="about-cards">
+        <article class="card">
+          <h3>Background</h3>
+          <p class="card__text">Computer Science student at BINUS University with an interest in software development, technology, and problem solving.</p>
+        </article>
+        <article class="card">
+          <h3>Areas of Interest</h3>
+          <ul class="tags">
+            <li>Software Development</li><li>Web Development</li><li>Artificial Intelligence</li><li>Databases</li><li>Algorithms</li><li>UI/UX Design</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Experience &amp; Approach</h3>
+          <p class="card__text">Experienced in analyzing requirements, designing systems, building applications, testing, and documenting projects. I enjoy learning through hands-on projects and applying technology to solve real-world problems.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="block block--cream view" id="skills">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--dark">Skills — Core Competencies</p>
+      <h2 class="display-lg">What I work with</h2>
+
+      <div class="skills__row">
+        <div class="skills__group">
+          <h3>Programming &amp; Development</h3>
+          <ul class="tags">
+            <li>C/C++</li><li>Python</li><li>JavaScript</li><li>PHP</li><li>SQL</li><li>HTML</li><li>CSS</li><li>Laravel</li><li>Vue.js</li><li>REST API</li><li>MySQL</li>
+          </ul>
+        </div>
+        <div class="skills__group">
+          <h3>Design &amp; Tools</h3>
+          <ul class="tags">
+            <li>Figma</li><li>Git</li><li>GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="block block--choco view" id="projects">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--light">Portofolio — Selected Projects</p>
+      <h2 class="display-lg display-lg--light">My <em>portfolio</em></h2>
+    </div>
+
+    <article class="project-row">
+      <div class="project-row__visual">
+        <div class="photo-collage">
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/aifood5-1.jpg" alt="AI Food5 image upload page" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid__frame">
+              <img src="images/aifood5-2.jpg" alt="Food classification and calorie estimate result" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid__frame">
+              <img src="images/aifood5-3.jpg" alt="User prediction history" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/aifood5-4.jpg" alt="Nutrition breakdown of the detected food" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-row__body">
+        <p class="tag-line">Package <span>AI / Web Application</span></p>
+        <h3>AI Food5 — Web-Based Calorie Estimation</h3>
+        <p><strong>The problem —</strong> estimating calorie intake from food can be difficult when users have to identify the food and look up its nutritional information manually.</p>
+        <p><strong>The build —</strong> a web-based application that uses deep learning to classify fast food images and estimate their calorie content. I contributed to developing the web application and integrating the food classification model into the prediction workflow.</p>
+        <ul class="tags tags--outline">
+          <li>Python</li><li>Flask</li><li>Pytorch</li><li>Resnet34</li><li>SQL</li>
+        </ul>
+        <div class="project-row__links">
+          <a href="https://github.com/atthaya-khazana/ai-food5" target="_blank" rel="noopener">GitHub &#8594;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-row project-row--reverse">
+      <div class="project-row__visual">
+        <div class="photo-collage photo-collage--phone">
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/project3-1.jpg" alt="App screenshot 1" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid__frame">
+              <img src="images/project3-2.jpg" alt="App screenshot 2" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/project3-3.jpg" alt="App screenshot 3" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-row__body">
+        <p class="tag-line">Package <span>UI/UX Design</span></p>
+        <h3>Dapurnusa — Indonesian Recipe Discovery App</h3>
+        <p><strong>The problem —</strong> Finding recipes and deciding what to cook can be challenging, especially for users who want practical meal ideas using ingredients they already have while exploring Indonesian cuisine.</p>
+        <p><strong>The build —</strong> Designed a mobile app UI prototype that helps users discover Indonesian recipes through search, conversational recipe recommendations, and ingredient-based suggestions. The project included defining target users, designing key screens, gathering user feedback through open-ended interviews, and improving the interface based on usability feedback. I collaborated with the team to develop the application concept, design the UI prototype, analyze user feedback, and refine the interface based on evaluation results.</p>
+        <ul class="tags tags--outline">
+          <li>UI/UX Design</li><li>Figma</li><li>User Research</li><li>Open-ended Interviews</li><li>Usability Evaluation</li><li>Interaction Design</li>
+        </ul>
+        <div class="project-row__links">
+          <a href="https://www.figma.com/proto/swOX0tiOSUez2FcanVHpNl/AOL-HCI?node-id=227-445&amp;p=f&amp;viewport=286%2C252%2C0.21&amp;t=etXO8b9Bn09ZXPam-1&amp;scaling=scale-down&amp;content-scaling=fixed&amp;starting-point-node-id=113%3A665&amp;show-proto-sidebar=1&amp;page-id=0%3A1" target="_blank" rel="noopener">Figma prototype &#8594;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="project-row">
+      <div class="project-row__visual">
+        <div class="photo-collage photo-collage--phone">
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/terrascent-1.jpg" alt="Terrascent screenshot 1" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid">
+            <div class="polaroid__frame">
+              <img src="images/terrascent-2.jpg" alt="Terrascent screenshot 2" loading="lazy">
+            </div>
+          </div>
+          <div class="polaroid polaroid--tape">
+            <div class="polaroid__frame">
+              <img src="images/terrascent-3.jpg" alt="Terrascent screenshot 3" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-row__body">
+        <p class="tag-line">Package <span>Business / Product Design</span></p>
+        <h3>Terrascent — Sustainable Fragrance Brand</h3>
+        <p><strong>The problem —</strong> conventional perfume packaging creates significant waste, while environmentally conscious consumers still look for products that are practical, affordable, and aesthetically appealing.</p>
+        <p><strong>The build —</strong> a sustainable fragrance brand concept featuring reusable wooden perfume bottles, eco-friendly refills, personalized scent recommendations through a quiz, and a bottle return and loyalty system. The project covered customer research, user persona, empathy mapping, product and website prototyping, perceptual mapping, and business model planning.</p>
+        <ul class="tags tags--outline">
+          <li>Business Model Development</li><li>Product Design</li><li>UX/UI Prototyping</li><li>Customer Research</li><li>Sustainability</li><li>Figma</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============ EXPERIENCE & BACKGROUND ============ -->
+  <section class="block block--cream view" id="record">
+    <div class="block__inner">
+      <p class="eyebrow eyebrow--dark">Education &amp; Experience — Overview</p>
+      <h2 class="display-lg">Education &amp; <em>Experience</em></h2>
+
+      <div class="tabs" role="tablist" aria-label="Education and experience sections">
+        <button class="tab" role="tab" type="button" id="tab-education" aria-controls="panel-education" aria-selected="true">Education</button>
+        <button class="tab" role="tab" type="button" id="tab-research" aria-controls="panel-research" aria-selected="false" tabindex="-1">Research</button>
+        <button class="tab" role="tab" type="button" id="tab-volunteer" aria-controls="panel-volunteer" aria-selected="false" tabindex="-1">Volunteer Experience</button>
+        <button class="tab" role="tab" type="button" id="tab-certifications" aria-controls="panel-certifications" aria-selected="false" tabindex="-1">Certifications</button>
+      </div>
+
+        <div role="tabpanel" id="panel-education" aria-labelledby="tab-education">
+          <article class="card card--entry entry">
+            <div class="entry__body">
+              <p class="tag-line">Education <span> · 2024 – Present</span></p>
+              <h3>BINUS University</h3>
+              <p>Bachelor’s Degree in Computer Science</p>
+            </div>
+          </article>
+          <article class="card card--entry entry">
+            <div class="entry__body">
+              <p class="tag-line">Education <span> · 2021 – 2024</span></p>
+              <h3>SMA Negeri 2 Bandung</h3>
+              <p>Senior High School</p>
+            </div>
+          </article>
+        </div>
+        <div role="tabpanel" id="panel-research" aria-labelledby="tab-research" hidden>
+          <article class="card card--entry entry">
+            <div class="entry__body">
+              <p class="tag-line">Research Project<span> · 2026</span></p>
+              <h3>Deep Learning-Based Fast Food Recognition with Lookup-Based Calorie Estimation</h3>
+              <p><strong>The research —</strong> Research project focused on developing a deep learning based food image classification system with lookup based calorie estimation. The study evaluated six deep learning architectures, including YOLOv8, YOLOv11, ResNet18, ResNet34, MobileNetV3, and MobileNetV4.</p>
+            </div>
+          </article>
+        </div>
+        <div role="tabpanel" id="panel-volunteer" aria-labelledby="tab-volunteer" hidden>
+          <article class="card card--entry entry entry--split">
+            <div class="entry__visual">
+              <div class="gallery">
+                <figure class="entry__photo">
+                  <div class="entry__photo-frame">
+                    <img src="images/f2wl-1.jpg" alt="F2WL 2024 photo 1" loading="lazy">
+                  </div>
+                </figure>
+                <figure class="entry__photo">
+                  <div class="entry__photo-frame">
+                    <img src="images/f2wl-2.jpg" alt="F2WL 2024 photo 2" loading="lazy">
+                  </div>
+                </figure>
+                <figure class="entry__photo">
+                  <div class="entry__photo-frame">
+                    <img src="images/f2wl-3.jpg" alt="F2WL 2024 photo 3" loading="lazy">
+                  </div>
+                </figure>
+                <figure class="entry__photo">
+                  <div class="entry__photo-frame">
+                    <img src="images/f2wl-4.jpg" alt="F2WL 2024 photo 4" loading="lazy">
+                  </div>
+                </figure>
+              </div>
+            </div>
+            <div class="entry__body">
+              <p class="tag-line">Volunteer Experience <span> · 2024</span></p>
+              <h3>Core Committee Member, General Secretary at F2WL 2024</h3>
+              <p><strong>The event —</strong> F2WL (From 2 With Love) is an annual performing arts and bazaar event that attracts around 5,000 to more than 10,000 visitors each year, with its highest attendance reaching approximately 15,000 visitors.</p>
+              <p><strong>The role —</strong> As General Secretary, I supported event administration, documentation, meeting coordination, and communication between divisions throughout the preparation and execution of the event.</p>
+            </div>
+          </article>
+        </div>
+        <div role="tabpanel" id="panel-certifications" aria-labelledby="tab-certifications" hidden>
+          <article class="card card--entry entry entry--split entry--cert">
+            <div class="entry__visual">
+              <figure class="entry__photo entry__photo--contain entry__photo--single">
+                <div class="entry__photo-frame">
+                  <img src="images/certificate.jpg" alt="Certificate of Excellence, Databases for Developers: Foundations" loading="lazy">
+                </div>
+              </figure>
+            </div>
+            <div class="entry__body">
+              <p class="tag-line">Certification <span> · 2025</span></p>
+              <h3>Databases for Developers: Foundations</h3>
+              <p>Oracle Dev Gym is a platform where I completed training in database fundamentals, SQL, and core concepts for database development, earning a Certificate of Excellence.</p>
+            </div>
+          </article>
+        </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="block block--choco view" id="contact">
+    <div class="block__inner contact">
+      <p class="eyebrow eyebrow--light">Contact — Contact Information</p>
+      <h2 class="display-lg display-lg--light">Let's talk</h2>
+      <p class="contact__lede">
+      I’m currently looking for internship opportunities where I can gain hands-on experience, contribute to real-world projects, and continue developing my skills. Feel free to reach out if you’d like to connect or discuss a project.
+      </p>
+      <div class="contact-links">
+        <a class="btn btn--butter" href="mailto:khazana.atthaya@gmail.com">Email</a>
+        <a class="btn btn--butter" href="https://github.com/atthaya-khazana" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn--butter" href="https://linkedin.com/in/atthaya-khazana-1a51a6307" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function () {
+  var views = document.querySelectorAll('.view');
+  var links = document.querySelectorAll('.navlink');
+  var nav = document.getElementById('sidebarNav');
+  var toggle = document.getElementById('navToggle');
+
+  function closeNav() {
+    nav.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+
+  // Tampilkan bagian sesuai hash di URL (#about, #projects, dst.); default ke #home
+  function show() {
+    var id = location.hash.slice(1);
+    var target = document.getElementById(id);
+    if (!target || !target.classList.contains('view')) id = 'home';
+
+    views.forEach(function (v) { v.classList.toggle('is-active', v.id === id); });
+    links.forEach(function (l) { l.classList.toggle('is-active', l.getAttribute('href') === '#' + id); });
+    document.getElementById(id).scrollTop = 0;
+    placePill(false);
+    closeNav();
+  }
+
+  toggle.addEventListener('click', function () {
+    var open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  // Tab Experience & Background
+  var tabs = document.querySelectorAll('.tab');
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    placePill(true);
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { selectTab(t); });
+    t.addEventListener('keydown', function (e) {
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      var next = tabs[(i + d + tabs.length) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+
+  // Kapsul yang bergeser di belakang tab aktif
+  var tabsEl = document.querySelector('.tabs');
+  var pill = document.createElement('span');
+  pill.className = 'tabs__pill';
+  pill.setAttribute('aria-hidden', 'true');
+  tabsEl.insertBefore(pill, tabsEl.firstChild);
+  tabsEl.classList.add('has-pill');
+
+  function placePill(animate) {
+    var sel = document.querySelector('.tab[aria-selected="true"]');
+    if (!sel || !sel.offsetWidth) return; // bagian belum tampil
+    if (!animate) pill.style.transition = 'none';
+    pill.style.width = sel.offsetWidth + 'px';
+    pill.style.height = sel.offsetHeight + 'px';
+    pill.style.transform = 'translate(' + sel.offsetLeft + 'px,' + sel.offsetTop + 'px)';
+    if (!animate) { pill.offsetWidth; pill.style.transition = ''; }
+  }
+  window.addEventListener('resize', function () { placePill(false); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { placePill(false); });
+
+  window.addEventListener('hashchange', show);
+  show();
+})();
+</script>
+</body>
+</html>
